@@ -390,6 +390,29 @@
     }
     .related li a:hover strong { color: var(--blue-900); text-decoration: underline; }
 
+    /* ── Externe Quellen (zweite Box unter den verwandten Artikeln) ── */
+    .related.sources { margin-top: 16px; background: var(--gray-50); }
+    .related.sources h3 { color: var(--gray-700); }
+    .related.sources li {
+      padding: 8px 0;
+      line-height: 1.55;
+      display: flex; gap: 4px; align-items: baseline;
+    }
+    .related.sources li .ico { flex-shrink: 0; }
+    .related.sources li em {
+      font-style: italic;
+      color: var(--gray-900);
+      font-weight: 500;
+    }
+    .related.sources li .url {
+      color: var(--blue-500);
+      word-break: break-all;
+      font-size: 13.5px;
+      /* sieht aus wie ein Link, ist aber bewusst nicht klickbar */
+      cursor: default;
+      user-select: text;
+    }
+
     /* ── Footer ──────────────────────────────────────────────── */
     footer {
       background: var(--white);
@@ -696,6 +719,37 @@
         <ul>
           <li><span class="ico">📄</span><a href="leitbild.html"><strong>Leitbild der Optimal GmbH</strong> – Unsere Werte als Kompass für Gewichtung und Lieferantenauswahl</a></li>
           <li><span class="ico">📊</span><a href="hilfekarten.html"><strong>Excel-Hilfekarten zur NWA</strong> – Schritt-für-Schritt-Anleitung für die Tabellenkalkulation</a></li>
+        </ul>
+      </aside>
+
+      <!-- Verwendete externe Quellen -->
+      <aside class="related sources">
+        <h3>📚 VERWENDETE EXTERNE QUELLEN</h3>
+        <ul>
+          <li>
+            <span class="ico">🌐</span>
+            <span>Studyflix: <em>Nutzwertanalyse&nbsp;–&nbsp;Erklärung und Beispiel.</em>
+              <span class="url">studyflix.de/wirtschaft/nutzwertanalyse-315</span>
+            </span>
+          </li>
+          <li>
+            <span class="ico">🌐</span>
+            <span>BWL-Lexikon: <em>Nutzwertanalyse&nbsp;–&nbsp;Definition, Erklärung und Beispiele.</em>
+              <span class="url">bwl-lexikon.de/wiki/nutzwertanalyse</span>
+            </span>
+          </li>
+          <li>
+            <span class="ico">🌐</span>
+            <span>Bensberg,&nbsp;F.: <em>Nutzwertanalyse.</em>
+              <span class="url">wi-lex.de/lexikon/&#8230;/nutzwertanalyse-2</span>
+            </span>
+          </li>
+          <li>
+            <span class="ico">🌐</span>
+            <span>Haufe Online Redaktion: <em>Nutzwertanalyse in der praktischen Anwendung.</em>
+              <span class="url">haufe.de/&#8230;/HI988258.html</span>
+            </span>
+          </li>
         </ul>
       </aside>
 
