@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Leitbild der Optimal GmbH – unsere fünf Grundsätze und unser Selbstverständnis als Familienunternehmen aus Haßfurt.">
+  <meta name="theme-color" content="#1A237E">
+  <title>Unser Leitbild · Optimal GmbH</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --blue-900: #1A237E;
+      --blue-700: #283593;
+      --blue-500: #3949AB;
+      --blue-100: #E8EAF6;
+      --blue-50:  #F5F7FB;
+      --cyan-500: #0288D1;
+      --cyan-100: #E1F5FE;
+      --gray-900: #1A1A1A;
+      --gray-700: #424242;
+      --gray-500: #757575;
+      --gray-400: #9E9E9E;
+      --gray-200: #E0E0E0;
+      --gray-100: #F5F5F5;
+      --gray-50:  #FAFAFA;
+      --white:    #FFFFFF;
+      --shadow-sm: 0 1px 2px rgba(0,0,0,.06);
+      --shadow-md: 0 4px 10px rgba(26,35,126,.08);
+      --shadow-lg: 0 10px 25px rgba(26,35,126,.12);
+    }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      color: var(--gray-700);
+      background: var(--gray-50);
+      line-height: 1.6;
+      font-size: 16px;
+      -webkit-font-smoothing: antialiased;
+    }
+    .container { max-width: 1080px; margin: 0 auto; padding: 0 24px; }
+
+    /* Intranet-Header */
+    .intranet-bar {
+      background: var(--blue-900); color: var(--white);
+      font-size: 14px;
+      position: sticky; top: 0; z-index: 100;
+      box-shadow: var(--shadow-md);
+    }
+    .intranet-bar .container {
+      display: flex; justify-content: space-between; align-items: center;
+      max-width: 1200px; padding: 12px 24px;
+    }
+    .brand { display: flex; align-items: center; gap: 10px; font-weight: 600; letter-spacing: -0.01em; }
+    .brand .icon { font-size: 18px; }
+    .top-nav { display: flex; gap: 28px; }
+    .top-nav a { color: rgba(255,255,255,.85); text-decoration: none; font-size: 13px; transition: color .15s ease; }
+    .top-nav a:hover { color: var(--white); }
+    .top-nav a.active { color: var(--white); position: relative; }
+    .top-nav a.active::after { content: ''; position: absolute; bottom: -16px; left: 0; right: 0; height: 2px; background: var(--cyan-500); }
+
+    /* Breadcrumb */
+    .breadcrumb {
+      background: var(--white);
+      border-bottom: 1px solid var(--gray-200);
+      padding: 14px 0; font-size: 13px;
+    }
+    .breadcrumb .container { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; color: var(--gray-500); }
+    .breadcrumb a { color: var(--blue-500); text-decoration: none; transition: color .15s ease; }
+    .breadcrumb a:hover { color: var(--blue-900); text-decoration: underline; }
+    .breadcrumb .sep { color: var(--gray-400); font-weight: 300; }
+    .breadcrumb .current { color: var(--gray-900); font-weight: 500; }
+
+    /* Hero – Leitbild-spezifisch (zweigeteilt) */
+    .leitbild-hero {
+      background: linear-gradient(135deg, var(--blue-900) 0%, var(--blue-700) 100%);
+      color: var(--white);
+      padding: 56px 0 64px;
+    }
+    .leitbild-hero .container {
+      display: flex; justify-content: space-between; align-items: flex-start;
+      gap: 40px; flex-wrap: wrap;
+    }
+    .logo-block { display: flex; align-items: center; gap: 14px; }
+    .logo-mark {
+      width: 56px; height: 56px;
+      background: var(--cyan-500);
+      border-radius: 12px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 28px; font-weight: 800;
+      box-shadow: 0 4px 12px rgba(2,136,209,.4);
+    }
+    .logo-text { line-height: 1.1; }
+    .logo-text .name { font-size: 26px; font-weight: 800; letter-spacing: -0.02em; }
+    .logo-text .sub { font-size: 14px; font-weight: 500; color: rgba(255,255,255,.7); margin-top: 2px; }
+    .hero-title { text-align: right; }
+    .hero-title .label {
+      font-size: 12px; font-weight: 700;
+      color: var(--cyan-500); letter-spacing: .2em;
+      margin-bottom: 10px;
+    }
+    .hero-title h1 {
+      font-size: clamp(22px, 3vw, 32px); font-weight: 700;
+      font-style: italic; letter-spacing: -0.015em;
+    }
+
+    /* Intro-Sektion (3 Spalten) */
+    .intro {
+      background: var(--white);
+      padding: 48px 0 16px;
+      border-bottom: 1px solid var(--gray-200);
+    }
+    .intro-grid {
+      display: grid; grid-template-columns: repeat(3, 1fr); gap: 36px;
+    }
+    .intro-block .lbl {
+      font-size: 12px; font-weight: 700;
+      color: var(--blue-500); letter-spacing: .15em;
+      margin-bottom: 12px;
+    }
+    .intro-block p { font-size: 15px; color: var(--gray-700); line-height: 1.65; }
+
+    /* Section "Worauf wir achten" */
+    .grundsaetze-head {
+      padding: 56px 0 28px;
+      display: flex; justify-content: space-between; align-items: baseline; gap: 24px;
+      border-bottom: 1px solid var(--gray-300);
+      flex-wrap: wrap;
+    }
+    .grundsaetze-head h2 {
+      font-size: clamp(24px, 3vw, 32px); font-weight: 700;
+      color: var(--blue-900); letter-spacing: -0.015em;
+    }
+    .grundsaetze-head .meta {
+      font-size: 13px; color: var(--gray-500); font-weight: 500;
+    }
+
+    /* Karten der 5 Grundsätze */
+    .grundsaetze {
+      padding: 32px 0 48px;
+      display: grid; grid-template-columns: repeat(5, 1fr); gap: 16px;
+    }
+    .grundsatz {
+      background: linear-gradient(180deg, var(--blue-50) 0%, var(--white) 100%);
+      border: 1px solid var(--gray-200);
+      border-radius: 12px;
+      padding: 24px 18px;
+      display: flex; flex-direction: column;
+      transition: transform .25s ease, box-shadow .25s ease, border-color .25s ease;
+    }
+    .grundsatz:hover {
+      transform: translateY(-3px);
+      box-shadow: var(--shadow-lg);
+      border-color: var(--cyan-500);
+    }
+    .grundsatz .ico {
+      width: 44px; height: 44px;
+      border-radius: 50%;
+      background: var(--cyan-100);
+      color: var(--cyan-500);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 20px;
+      margin-bottom: 22px;
+    }
+    .grundsatz .nr {
+      font-size: 11px; font-weight: 700;
+      color: var(--gray-400); letter-spacing: .12em;
+      margin-bottom: 6px;
+    }
+    .grundsatz h3 {
+      font-size: 16px; font-weight: 700;
+      color: var(--blue-900); letter-spacing: -0.01em;
+      margin-bottom: 10px; line-height: 1.25;
+    }
+    .grundsatz p {
+      font-size: 13.5px; color: var(--gray-700);
+      line-height: 1.55;
+    }
+
+    /* Eckdaten-Leiste */
+    .facts {
+      background: var(--blue-900);
+      color: var(--white);
+      margin: 48px 0;
+      border-radius: 12px;
+      padding: 28px 36px;
+      display: grid; grid-template-columns: 1fr 2fr 1fr; gap: 32px;
+    }
+    .fact-item { display: flex; flex-direction: column; gap: 4px; }
+    .fact-item .big {
+      font-size: clamp(22px, 3vw, 30px); font-weight: 800;
+      color: var(--cyan-500); letter-spacing: -0.015em;
+    }
+    .fact-item .lbl {
+      font-size: 14px; font-weight: 500;
+      color: rgba(255,255,255,.85);
+    }
+    .fact-item.center { text-align: left; }
+    .fact-item.center .big { font-size: 22px; color: var(--white); }
+
+    /* Verwandte Artikel */
+    .related {
+      background: var(--gray-100);
+      border: 1px solid var(--gray-200);
+      border-radius: 12px;
+      padding: 22px 26px;
+      margin-top: 40px;
+    }
+    .related h3 {
+      font-size: 12px; font-weight: 700;
+      color: var(--blue-900); letter-spacing: .12em;
+      margin-bottom: 14px;
+      display: flex; align-items: center; gap: 8px;
+    }
+    .related ul { list-style: none; }
+    .related li { padding: 6px 0; font-size: 14.5px; color: var(--gray-700); }
+    .related li a { color: inherit; text-decoration: none; transition: color .15s ease; }
+    .related li a strong { color: var(--blue-500); font-weight: 600; margin-right: 4px; transition: color .15s ease; }
+    .related li a:hover strong { color: var(--blue-900); text-decoration: underline; }
+    .related li .ico { display: inline-block; width: 22px; }
+
+    /* Footer */
+    footer {
+      background: var(--white);
+      border-top: 1px solid var(--gray-200);
+      padding: 32px 0 40px;
+      margin-top: 48px;
+      font-size: 13px; color: var(--gray-500);
+    }
+    footer p { margin-bottom: 4px; }
+    footer .muted { color: var(--gray-400); font-size: 12px; }
+
+    /* Mobile */
+    @media (max-width: 800px) {
+      .intranet-bar .container { padding: 10px 16px; }
+      .top-nav { display: none; }
+      .container { padding: 0 16px; }
+      .leitbild-hero { padding: 36px 0 44px; }
+      .leitbild-hero .container { flex-direction: column; gap: 24px; }
+      .hero-title { text-align: left; }
+      .intro-grid { grid-template-columns: 1fr; gap: 24px; }
+      .grundsaetze { grid-template-columns: 1fr 1fr; }
+      .facts { grid-template-columns: 1fr; gap: 16px; padding: 22px 24px; }
+    }
+    @media (max-width: 480px) {
+      .grundsaetze { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- Intranet-Header -->
+  <header class="intranet-bar">
+    <div class="container">
+      <div class="brand">
+        <span class="icon">🌐</span>
+        <span>Optimal GmbH&nbsp;·&nbsp;Intranet</span>
+      </div>
+      <nav class="top-nav">
+        <a href="#">Startseite</a>
+        <a href="#" class="active">Wissensdatenbank</a>
+        <a href="#">Tools</a>
+        <a href="#">Kontakt</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Breadcrumb -->
+  <nav class="breadcrumb">
+    <div class="container">
+      <a href="#">Intranet</a>
+      <span class="sep">›</span>
+      <a href="#">Wissensdatenbank</a>
+      <span class="sep">›</span>
+      <a href="#">Unternehmen</a>
+      <span class="sep">›</span>
+      <span class="current">Unser Leitbild</span>
+    </div>
+  </nav>
+
+  <!-- Hero -->
+  <section class="leitbild-hero">
+    <div class="container">
+      <div class="logo-block">
+        <div class="logo-mark">O</div>
+        <div class="logo-text">
+          <div class="name">OPTIMAL</div>
+          <div class="sub">GmbH</div>
+        </div>
+      </div>
+      <div class="hero-title">
+        <div class="label">UNSER LEITBILD</div>
+        <h1>„IT, die hält, was wir versprechen."</h1>
+      </div>
+    </div>
+  </section>
+
+  <!-- Intro (3 Spalten) -->
+  <section class="intro">
+    <div class="container">
+      <div class="intro-grid">
+        <div class="intro-block">
+          <div class="lbl">WER WIR SIND</div>
+          <p>Seit 1998 IT-Dienstleister mit Sitz in Haßfurt. Wir planen, liefern und betreuen IT-Arbeitsplätze für mittelständische Unternehmen in Unterfranken.</p>
+        </div>
+        <div class="intro-block">
+          <div class="lbl">UNSER VERSPRECHEN</div>
+          <p>Kunden vertrauen uns Geräte, Daten und Prozesse an. Diesem Vertrauen werden wir gerecht – fachlich, terminlich und kaufmännisch nachvollziehbar.</p>
+        </div>
+        <div class="intro-block">
+          <div class="lbl">UNSERE VERANTWORTUNG</div>
+          <p>Als Familienunternehmen wissen wir: Jede Entscheidung trägt unsere Marke nach außen.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <main>
+    <div class="container">
+
+      <header class="grundsaetze-head">
+        <h2>Worauf wir achten</h2>
+        <div class="meta">Unsere fünf Grundsätze</div>
+      </header>
+
+      <!-- 5 Grundsätze -->
+      <div class="grundsaetze">
+        <article class="grundsatz">
+          <div class="ico">✓</div>
+          <div class="nr">01</div>
+          <h3>Verlässlichkeit</h3>
+          <p>Was wir zusagen, halten wir – gegenüber Kunden, Mitarbeitenden und Partnern.</p>
+        </article>
+
+        <article class="grundsatz">
+          <div class="ico">◆</div>
+          <div class="nr">02</div>
+          <h3>Qualität, die sich rechnet</h3>
+          <p>Lösungen, die im Alltag tragen. Wir denken in Lebenszyklen, nicht in Einkaufspreisen.</p>
+        </article>
+
+        <article class="grundsatz">
+          <div class="ico">💬</div>
+          <div class="nr">03</div>
+          <h3>Kundennähe</h3>
+          <p>Steht beim Kunden etwas, steht bei uns alles andere. Schnelle Hilfe gehört zur Leistung.</p>
+        </article>
+
+        <article class="grundsatz">
+          <div class="ico">🌱</div>
+          <div class="nr">04</div>
+          <h3>Verantwortung</h3>
+          <p>Entscheidungen mit Blick auf Umwelt, Region und die Generationen nach uns.</p>
+        </article>
+
+        <article class="grundsatz">
+          <div class="ico">∞</div>
+          <div class="nr">05</div>
+          <h3>Partnerschaft auf Augenhöhe</h3>
+          <p>Langfristige Beziehungen statt kurzfristiger Vorteile – mit allen Beteiligten.</p>
+        </article>
+      </div>
+
+      <!-- Eckdaten-Leiste -->
+      <div class="facts">
+        <div class="fact-item">
+          <div class="big">1998</div>
+          <div class="lbl">IT-Dienstleister seit</div>
+        </div>
+        <div class="fact-item center">
+          <div class="big">Familienunternehmen</div>
+          <div class="lbl">aus der Region</div>
+        </div>
+        <div class="fact-item">
+          <div class="big">Haßfurt</div>
+          <div class="lbl">Unterfranken</div>
+        </div>
+      </div>
+
+      <!-- Verwandte Artikel -->
+      <aside class="related">
+        <h3>🔗 VERWANDTE ARTIKEL IN DER WISSENSDATENBANK</h3>
+        <ul>
+          <li><span class="ico">📘</span><a href="index.html"><strong>Angebotsvergleich mit der Nutzwertanalyse</strong> – Wie unsere Werte bei Lieferantenentscheidungen wirken</a></li>
+          <li><span class="ico">📊</span><a href="hilfekarten.html"><strong>Excel-Hilfekarten zur NWA</strong> – Schritt-für-Schritt-Anleitung für die Tabellenkalkulation</a></li>
+        </ul>
+      </aside>
+
+    </div>
+  </main>
+
+  <footer>
+    <div class="container">
+      <p><strong>Optimal GmbH</strong> · Hofheimer Straße 14–18 · 97437 Haßfurt · www.optimal-gmbh.de</p>
+      <p class="muted">Stand: Januar&nbsp;2026</p>
+    </div>
+  </footer>
+
+</body>
+</html>

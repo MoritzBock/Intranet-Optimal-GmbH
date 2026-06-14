@@ -1,0 +1,514 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Excel-Hilfekarten zur Nutzwertanalyse – Schritt-für-Schritt-Anleitung für die Tabellenkalkulation.">
+  <meta name="theme-color" content="#1A237E">
+  <title>Excel-Hilfekarten zur NWA · Optimal GmbH</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --blue-900: #1A237E;
+      --blue-700: #283593;
+      --blue-500: #3949AB;
+      --blue-100: #E8EAF6;
+      --blue-50:  #F5F7FB;
+      --green-700: #1B5E20;
+      --green-500: #43A047;
+      --green-100: #E8F5E9;
+      --green-50:  #F1F8E9;
+      --orange-700: #E65100;
+      --orange-500: #FF9800;
+      --orange-100: #FFF3E0;
+      --red-700:  #C62828;
+      --yellow-100: #FFF8E1;
+      --gray-900: #1A1A1A;
+      --gray-700: #424242;
+      --gray-500: #757575;
+      --gray-400: #9E9E9E;
+      --gray-200: #E0E0E0;
+      --gray-100: #F5F5F5;
+      --gray-50:  #FAFAFA;
+      --white:    #FFFFFF;
+      --shadow-sm: 0 1px 2px rgba(0,0,0,.06);
+      --shadow-md: 0 4px 10px rgba(26,35,126,.08);
+      --shadow-lg: 0 10px 25px rgba(26,35,126,.12);
+    }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      color: var(--gray-700);
+      background: var(--gray-50);
+      line-height: 1.6;
+      font-size: 16px;
+      -webkit-font-smoothing: antialiased;
+    }
+    .container { max-width: 920px; margin: 0 auto; padding: 0 24px; }
+    code, .mono { font-family: 'JetBrains Mono', 'Consolas', monospace; }
+
+    /* Intranet-Header */
+    .intranet-bar { background: var(--blue-900); color: var(--white); font-size: 14px; position: sticky; top: 0; z-index: 100; box-shadow: var(--shadow-md); }
+    .intranet-bar .container { display: flex; justify-content: space-between; align-items: center; max-width: 1200px; padding: 12px 24px; }
+    .brand { display: flex; align-items: center; gap: 10px; font-weight: 600; letter-spacing: -0.01em; }
+    .brand .icon { font-size: 18px; }
+    .top-nav { display: flex; gap: 28px; }
+    .top-nav a { color: rgba(255,255,255,.85); text-decoration: none; font-size: 13px; transition: color .15s ease; }
+    .top-nav a:hover { color: var(--white); }
+    .top-nav a.active { color: var(--white); position: relative; }
+    .top-nav a.active::after { content: ''; position: absolute; bottom: -16px; left: 0; right: 0; height: 2px; background: var(--green-500); }
+
+    /* Breadcrumb */
+    .breadcrumb { background: var(--white); border-bottom: 1px solid var(--gray-200); padding: 14px 0; font-size: 13px; }
+    .breadcrumb .container { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; color: var(--gray-500); }
+    .breadcrumb a { color: var(--blue-500); text-decoration: none; transition: color .15s ease; }
+    .breadcrumb a:hover { color: var(--blue-900); text-decoration: underline; }
+    .breadcrumb .sep { color: var(--gray-400); font-weight: 300; }
+    .breadcrumb .current { color: var(--gray-900); font-weight: 500; }
+
+    /* Hero */
+    .hero { background: var(--white); padding: 48px 0 32px; border-bottom: 1px solid var(--gray-200); }
+    .hero .label { font-size: 12px; font-weight: 700; color: var(--green-700); letter-spacing: .15em; margin-bottom: 12px; }
+    .hero h1 { font-weight: 800; font-size: clamp(28px, 4vw, 40px); color: var(--blue-900); line-height: 1.15; letter-spacing: -0.025em; margin-bottom: 16px; }
+    .hero .meta { font-size: 13px; color: var(--gray-500); display: flex; flex-wrap: wrap; gap: 8px; align-items: center; }
+    .hero .meta .dot { width: 3px; height: 3px; background: var(--gray-400); border-radius: 50%; }
+
+    /* Section */
+    main { padding: 48px 0 64px; }
+    .intro-text { font-size: 15px; color: var(--gray-700); margin-bottom: 32px; max-width: 700px; }
+
+    /* Kartennavigation (Anker oben) */
+    .karten-nav { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-bottom: 40px; }
+    .karten-nav a {
+      background: var(--white); border: 1px solid var(--gray-200);
+      border-radius: 10px; padding: 14px 16px; text-decoration: none;
+      color: var(--gray-700); display: flex; gap: 12px; align-items: center;
+      transition: all .2s ease;
+    }
+    .karten-nav a:hover { border-color: var(--green-500); box-shadow: var(--shadow-md); transform: translateY(-2px); }
+    .karten-nav a .n {
+      width: 32px; height: 32px;
+      background: var(--green-100); color: var(--green-700);
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-weight: 700; font-size: 15px;
+      flex-shrink: 0;
+    }
+    .karten-nav a .t { font-size: 13.5px; font-weight: 600; color: var(--gray-900); line-height: 1.3; }
+
+    /* Hilfekarte */
+    .karte {
+      background: var(--white);
+      border-radius: 12px;
+      margin-bottom: 32px;
+      border: 1px solid var(--gray-200);
+      box-shadow: var(--shadow-sm);
+      overflow: hidden;
+    }
+    .karte-head {
+      display: flex; align-items: center; gap: 18px;
+      padding: 20px 26px;
+      background: var(--green-100);
+      border-bottom: 1px solid #C8E6C9;
+    }
+    .karte-head .num {
+      flex-shrink: 0;
+      width: 48px; height: 48px;
+      background: var(--green-700); color: var(--white);
+      border-radius: 10px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 20px; font-weight: 700;
+    }
+    .karte-head .titles .lbl {
+      font-size: 11px; font-weight: 700;
+      color: var(--green-700); letter-spacing: .12em;
+      margin-bottom: 2px;
+    }
+    .karte-head .titles h3 {
+      font-size: 20px; font-weight: 700;
+      color: var(--blue-900); letter-spacing: -0.015em;
+    }
+    .karte-body { padding: 26px 28px; }
+    .karte-body > p { margin-bottom: 14px; }
+
+    /* Sub-Heading innerhalb einer Karte */
+    .sub-heading {
+      font-size: 13px; font-weight: 700;
+      color: var(--green-700); letter-spacing: .08em;
+      text-transform: uppercase;
+      margin: 24px 0 10px;
+      display: flex; align-items: center; gap: 8px;
+    }
+    .sub-heading:first-child { margin-top: 0; }
+
+    /* Excel-Tabellen-Optik */
+    .excel-table {
+      background: var(--white);
+      border: 1px solid var(--gray-400);
+      border-radius: 4px;
+      overflow: hidden;
+      margin: 12px 0 20px;
+    }
+    .excel-row { display: flex; }
+    .excel-row.header {
+      background: linear-gradient(180deg, #F3F4F6 0%, #E5E7EB 100%);
+      border-bottom: 1px solid var(--gray-400);
+      font-weight: 600;
+    }
+    .excel-cell {
+      flex: 1;
+      padding: 8px 12px;
+      border-right: 1px solid var(--gray-200);
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 13px;
+    }
+    .excel-cell:last-child { border-right: none; }
+    .excel-cell.col-label {
+      flex: 0 0 50px;
+      background: linear-gradient(180deg, #F3F4F6 0%, #E5E7EB 100%);
+      text-align: center;
+      font-weight: 600;
+      color: var(--gray-500);
+      font-size: 12px;
+      border-right: 1px solid var(--gray-400);
+    }
+
+    /* Schritt-Block in Karte 3 */
+    .schritt-block {
+      background: var(--gray-50);
+      border-left: 4px solid var(--green-500);
+      border-radius: 6px;
+      padding: 16px 20px;
+      margin-bottom: 16px;
+    }
+    .schritt-block .s-title {
+      font-size: 14px; font-weight: 700;
+      color: var(--blue-900);
+      margin-bottom: 8px;
+    }
+    .schritt-block .s-title .num {
+      display: inline-block;
+      background: var(--green-700); color: var(--white);
+      width: 22px; height: 22px; border-radius: 50%;
+      font-size: 12px; line-height: 22px; text-align: center;
+      margin-right: 8px;
+    }
+    .schritt-block p { font-size: 14.5px; margin-bottom: 6px; }
+    .schritt-block p:last-child { margin-bottom: 0; }
+
+    /* Reihenfolge-Liste (Karte 1) */
+    .reihenfolge { list-style: none; margin: 12px 0; }
+    .reihenfolge li {
+      display: flex; gap: 14px; align-items: flex-start;
+      padding: 8px 0;
+      font-size: 14.5px;
+    }
+    .reihenfolge li .step-n {
+      flex-shrink: 0;
+      width: 26px; height: 26px;
+      background: var(--green-100); color: var(--green-700);
+      border-radius: 50%; font-weight: 700; font-size: 13px;
+      display: flex; align-items: center; justify-content: center;
+    }
+
+    /* Formel-Block */
+    .formel-block {
+      background: var(--blue-50);
+      border: 1px solid #C5CAE9;
+      border-radius: 8px;
+      padding: 18px 22px;
+      margin: 12px 0;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 15px;
+      color: var(--blue-900);
+      font-weight: 600;
+    }
+    .formel-block .arrow { color: var(--gray-400); margin: 0 8px; }
+
+    /* Hinweis-Boxen */
+    .hinweis {
+      padding: 14px 18px;
+      border-radius: 8px;
+      border-left: 4px solid;
+      font-size: 14.5px;
+      margin: 14px 0;
+    }
+    .hinweis .h-head {
+      display: flex; align-items: center; gap: 8px;
+      font-weight: 700; font-size: 14px;
+      margin-bottom: 6px;
+    }
+    .hinweis.tipp { background: var(--orange-100); border-left-color: var(--orange-700); }
+    .hinweis.tipp .h-head { color: var(--orange-700); }
+    .hinweis.warn { background: var(--yellow-100); border-left-color: var(--red-700); }
+    .hinweis.warn .h-head { color: var(--red-700); }
+    .hinweis code { background: rgba(255,255,255,.7); padding: 1px 6px; border-radius: 4px; font-size: 13px; font-weight: 600; }
+    .hinweis.tipp code { color: var(--orange-700); border: 1px solid #FFD180; }
+    .hinweis.warn code { color: var(--red-700); border: 1px solid #FFE082; }
+
+    /* Inline Excel-Zellenbezug-Highlight */
+    .cell-ref {
+      font-family: 'JetBrains Mono', monospace;
+      background: var(--green-100);
+      color: var(--green-700);
+      padding: 1px 6px; border-radius: 4px;
+      font-size: 13px; font-weight: 600;
+      border: 1px solid #A5D6A7;
+    }
+    .formula {
+      font-family: 'JetBrains Mono', monospace;
+      background: var(--blue-100);
+      color: var(--blue-900);
+      padding: 2px 8px; border-radius: 4px;
+      font-size: 13.5px; font-weight: 600;
+      border: 1px solid #C5CAE9;
+      display: inline-block;
+    }
+
+    /* Verwandte Artikel */
+    .related { background: var(--gray-100); border: 1px solid var(--gray-200); border-radius: 12px; padding: 22px 26px; margin-top: 40px; }
+    .related h3 { font-size: 12px; font-weight: 700; color: var(--blue-900); letter-spacing: .12em; margin-bottom: 14px; display: flex; align-items: center; gap: 8px; }
+    .related ul { list-style: none; }
+    .related li { padding: 6px 0; font-size: 14.5px; color: var(--gray-700); }
+    .related li a { color: inherit; text-decoration: none; transition: color .15s ease; }
+    .related li a strong { color: var(--blue-500); font-weight: 600; margin-right: 4px; transition: color .15s ease; }
+    .related li a:hover strong { color: var(--blue-900); text-decoration: underline; }
+    .related li .ico { display: inline-block; width: 22px; }
+
+    /* Footer */
+    footer { background: var(--white); border-top: 1px solid var(--gray-200); padding: 32px 0 40px; margin-top: 48px; font-size: 13px; color: var(--gray-500); }
+    footer p { margin-bottom: 4px; }
+    footer .muted { color: var(--gray-400); font-size: 12px; }
+
+    /* Mobile */
+    @media (max-width: 700px) {
+      .intranet-bar .container { padding: 10px 16px; }
+      .top-nav { display: none; }
+      .container { padding: 0 16px; }
+      .hero { padding: 32px 0 24px; }
+      .karten-nav { grid-template-columns: 1fr; }
+      .karte-head { padding: 16px 18px; gap: 14px; }
+      .karte-head .num { width: 40px; height: 40px; font-size: 18px; }
+      .karte-head .titles h3 { font-size: 17px; }
+      .karte-body { padding: 20px 20px; }
+      .excel-row { font-size: 12px; }
+      .excel-cell { padding: 6px 8px; }
+    }
+  </style>
+</head>
+
+<body>
+
+  <header class="intranet-bar">
+    <div class="container">
+      <div class="brand">
+        <span class="icon">🌐</span>
+        <span>Optimal GmbH&nbsp;·&nbsp;Intranet</span>
+      </div>
+      <nav class="top-nav">
+        <a href="#">Startseite</a>
+        <a href="#" class="active">Wissensdatenbank</a>
+        <a href="#">Tools</a>
+        <a href="#">Kontakt</a>
+      </nav>
+    </div>
+  </header>
+
+  <nav class="breadcrumb">
+    <div class="container">
+      <a href="#">Intranet</a>
+      <span class="sep">›</span>
+      <a href="#">Wissensdatenbank</a>
+      <span class="sep">›</span>
+      <a href="#">Einkauf &amp; Beschaffung</a>
+      <span class="sep">›</span>
+      <span class="current">Excel-Hilfekarten zur NWA</span>
+    </div>
+  </nav>
+
+  <section class="hero">
+    <div class="container">
+      <p class="label">HILFEKARTEN</p>
+      <h1>Excel-Hilfekarten zur Nutzwertanalyse</h1>
+      <p class="meta">
+        <span>Anleitung in 3 Karten</span>
+        <span class="dot"></span>
+        <span>Tabellenkalkulation Schritt für Schritt</span>
+        <span class="dot"></span>
+        <span>zuletzt aktualisiert: Januar&nbsp;2026</span>
+      </p>
+    </div>
+  </section>
+
+  <main>
+    <div class="container">
+
+      <p class="intro-text">
+        Diese drei Karten helfen dir, deine Nutzwertanalyse in Excel sauber aufzubauen.
+        Beginne mit der Übersicht, schlage bei Formelproblemen in Karte&nbsp;2 nach und nutze
+        Karte&nbsp;3, wenn du eine vollständige Schritt-für-Schritt-Anleitung brauchst.
+      </p>
+
+      <!-- Karten-Schnellnavigation -->
+      <nav class="karten-nav">
+        <a href="#karte1"><span class="n">1</span><span class="t">Wo anfangen?</span></a>
+        <a href="#karte2"><span class="n">2</span><span class="t">Excel-Formeln</span></a>
+        <a href="#karte3"><span class="n">3</span><span class="t">Komplettanleitung</span></a>
+      </nav>
+
+      <!-- HILFEKARTE 1 -->
+      <article class="karte" id="karte1">
+        <header class="karte-head">
+          <div class="num">1</div>
+          <div class="titles">
+            <p class="lbl">HILFEKARTE 1&thinsp;/&thinsp;3</p>
+            <h3>Wo anfangen?</h3>
+          </div>
+        </header>
+        <div class="karte-body">
+
+          <div class="sub-heading">📋 Spaltenstruktur</div>
+          <div class="excel-table">
+            <div class="excel-row header">
+              <div class="excel-cell col-label">&nbsp;</div>
+              <div class="excel-cell">A</div>
+              <div class="excel-cell">B</div>
+              <div class="excel-cell">C</div>
+              <div class="excel-cell">D</div>
+              <div class="excel-cell">E</div>
+            </div>
+            <div class="excel-row">
+              <div class="excel-cell col-label">3</div>
+              <div class="excel-cell">Kriterium</div>
+              <div class="excel-cell">Gewichtung</div>
+              <div class="excel-cell">Faktor</div>
+              <div class="excel-cell">Punkte</div>
+              <div class="excel-cell">Teilnutzwert</div>
+            </div>
+          </div>
+
+          <div class="sub-heading">🎯 Reihenfolge</div>
+          <ol class="reihenfolge">
+            <li><span class="step-n">1</span><span>Kriterien, Gewichtungen und Faktor eintragen.</span></li>
+            <li><span class="step-n">2</span><span>Punkte 1–5 pro Angebot vergeben.</span></li>
+            <li><span class="step-n">3</span><span>Nutzwerte berechnen (Spalte E).</span></li>
+            <li><span class="step-n">4</span><span>Gesamtsumme (Gesamtnutzwert) pro Angebot ausrechnen (unterste Zeile).</span></li>
+          </ol>
+
+          <div class="hinweis tipp">
+            <div class="h-head">💡 Tipp</div>
+            <p>Gewichtung als Dezimalzahl eingeben (<code>0,30</code> statt <code>30&nbsp;%</code>). Die Summe der Faktoren muss exakt <code>1,00</code> sein.</p>
+          </div>
+
+        </div>
+      </article>
+
+      <!-- HILFEKARTE 2 -->
+      <article class="karte" id="karte2">
+        <header class="karte-head">
+          <div class="num">2</div>
+          <div class="titles">
+            <p class="lbl">HILFEKARTE 2&thinsp;/&thinsp;3</p>
+            <h3>Excel-Formeln</h3>
+          </div>
+        </header>
+        <div class="karte-body">
+
+          <div class="sub-heading">🧮 Nutzwert berechnen</div>
+          <p>Beispiel in Zelle <span class="cell-ref">E3</span>:</p>
+          <div class="formel-block">
+            <span class="cell-ref">E3</span>&nbsp;:&nbsp; <span class="formula">=C3*D3</span>
+          </div>
+
+          <div class="sub-heading">↘ Formel auf weitere Zeilen kopieren</div>
+          <p>Zelle anklicken → kleine Ecke unten rechts greifen → nach unten ziehen.</p>
+          <p>Excel passt die Zellbezüge automatisch an: <span class="formula">=C4*D4</span>, <span class="formula">=C5*D5</span>, …</p>
+
+          <div class="sub-heading">∑ Gesamtnutzwert</div>
+          <p>Zum Beispiel in Zelle <span class="cell-ref">E8</span>:</p>
+          <div class="formel-block">
+            <span class="cell-ref">E8</span>&nbsp;:&nbsp; <span class="formula">=SUMME(E3:E7)</span>
+          </div>
+
+          <div class="hinweis warn">
+            <div class="h-head">⚠️ Achtung</div>
+            <p>Jede Formel beginnt mit einem <code>=</code>. Das Dezimaltrennzeichen ist das <strong>Komma</strong> (<code>0,3</code> statt <code>0.3</code>).</p>
+          </div>
+
+        </div>
+      </article>
+
+      <!-- HILFEKARTE 3 -->
+      <article class="karte" id="karte3">
+        <header class="karte-head">
+          <div class="num">3</div>
+          <div class="titles">
+            <p class="lbl">HILFEKARTE 3&thinsp;/&thinsp;3</p>
+            <h3>Komplettanleitung &mdash; Schritt für Schritt</h3>
+          </div>
+        </header>
+        <div class="karte-body">
+
+          <div class="schritt-block">
+            <div class="s-title"><span class="num">1</span>Kopfzeile (Zeile 3)</div>
+            <p><span class="cell-ref">A3</span> Kriterium  ·  <span class="cell-ref">B3</span> Gewichtung  ·  <span class="cell-ref">C3</span> Faktor  ·  <span class="cell-ref">D3</span> Punkte  ·  <span class="cell-ref">E3</span> Teilnutzwert</p>
+          </div>
+
+          <div class="schritt-block">
+            <div class="s-title"><span class="num">2</span>Kriterien &amp; Gewichtungen</div>
+            <p><span class="cell-ref">A3</span> bis <span class="cell-ref">A7</span>: eure 5 Kriterien.</p>
+            <p><span class="cell-ref">B3</span> bis <span class="cell-ref">B7</span>: Gewichtungen als Prozentzahl. Summe muss <strong>100&nbsp;%</strong> ergeben.</p>
+            <p><span class="cell-ref">C3</span> bis <span class="cell-ref">C7</span>: Gewichtungen als Dezimalzahl. Summe muss <strong>1,00</strong> ergeben.</p>
+          </div>
+
+          <div class="schritt-block">
+            <div class="s-title"><span class="num">3</span>Punkte 1–5 vergeben</div>
+            <p>Die entsprechende Punktzahl pro Kriterium in der Spalte <span class="cell-ref">D</span> für jedes Angebot eintragen.</p>
+          </div>
+
+          <div class="schritt-block">
+            <div class="s-title"><span class="num">4</span>Nutzwerte berechnen</div>
+            <p>z.&nbsp;B.: <span class="cell-ref">E3</span> &nbsp;<span class="formula">=C3*D3</span>&nbsp;&nbsp;→ bis <span class="cell-ref">E7</span> runterziehen.</p>
+            <p>Bei den übrigen Angeboten identisch vorgehen, jeweils die Zeilennummern anpassen.</p>
+          </div>
+
+          <div class="schritt-block">
+            <div class="s-title"><span class="num">5</span>Gesamtnutzwert pro Angebot (Zeile 8)</div>
+            <p>z.&nbsp;B.: <span class="cell-ref">E8</span> &nbsp;<span class="formula">=SUMME(E3:E7)</span></p>
+            <p>Bei den übrigen Angeboten identisch vorgehen, jeweils die Zeilennummern anpassen.</p>
+          </div>
+
+          <div class="schritt-block">
+            <div class="s-title"><span class="num">6</span>Sieger ablesen</div>
+            <p>Vergleicht die Gesamtnutzwerte. Der <strong>höchste Wert</strong> ist euer empfohlenes Angebot.</p>
+          </div>
+
+        </div>
+      </article>
+
+      <!-- Verwandte Artikel -->
+      <aside class="related">
+        <h3>🔗 VERWANDTE ARTIKEL IN DER WISSENSDATENBANK</h3>
+        <ul>
+          <li><span class="ico">📘</span><a href="index.html"><strong>Angebotsvergleich mit der Nutzwertanalyse</strong> – Methode, 5 Schritte und Rechenbeispiel</a></li>
+          <li><span class="ico">📄</span><a href="leitbild.html"><strong>Leitbild der Optimal GmbH</strong> – Unsere Werte als Kompass für Gewichtung und Lieferantenauswahl</a></li>
+        </ul>
+      </aside>
+
+    </div>
+  </main>
+
+  <footer>
+    <div class="container">
+      <p><strong>Optimal GmbH</strong> · Hofheimer Straße 14–18 · 97437 Haßfurt</p>
+      <p class="muted">Wissensdatenbank · Einkauf &amp; Beschaffung · Letzte Aktualisierung: Januar&nbsp;2026</p>
+    </div>
+  </footer>
+
+</body>
+</html>

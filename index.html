@@ -1,0 +1,728 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Leitfaden: Der Angebotsvergleich mit der Nutzwertanalyse – Wissensdatenbank Einkauf & Beschaffung der Optimal GmbH.">
+  <meta name="theme-color" content="#1A237E">
+  <title>Leitfaden: Angebotsvergleich mit der Nutzwertanalyse · Optimal GmbH</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+
+  <style>
+    /* ── Basis ───────────────────────────────────────────────── */
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --blue-900: #1A237E;
+      --blue-700: #283593;
+      --blue-500: #3949AB;
+      --blue-100: #E8EAF6;
+      --blue-50:  #F5F7FB;
+      --orange-700: #E65100;
+      --orange-500: #FF9800;
+      --orange-100: #FFF3E0;
+      --green-700: #1B5E20;
+      --green-100: #E8F5E9;
+      --red-700:  #C62828;
+      --yellow-100: #FFF8E1;
+      --gray-900: #1A1A1A;
+      --gray-700: #424242;
+      --gray-500: #757575;
+      --gray-400: #9E9E9E;
+      --gray-200: #E0E0E0;
+      --gray-100: #F5F5F5;
+      --gray-50:  #FAFAFA;
+      --white:    #FFFFFF;
+      --shadow-sm: 0 1px 2px rgba(0,0,0,.06);
+      --shadow-md: 0 4px 10px rgba(26,35,126,.08);
+      --shadow-lg: 0 10px 25px rgba(26,35,126,.12);
+    }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      color: var(--gray-700);
+      background: var(--gray-50);
+      line-height: 1.6;
+      font-size: 16px;
+      -webkit-font-smoothing: antialiased;
+    }
+    .container { max-width: 880px; margin: 0 auto; padding: 0 24px; }
+
+    /* ── Intranet-Header (oben) ──────────────────────────────── */
+    .intranet-bar {
+      background: var(--blue-900);
+      color: var(--white);
+      font-size: 14px;
+      position: sticky; top: 0; z-index: 100;
+      box-shadow: var(--shadow-md);
+    }
+    .intranet-bar .container {
+      display: flex; justify-content: space-between; align-items: center;
+      max-width: 1100px;
+      padding: 12px 24px;
+    }
+    .brand {
+      display: flex; align-items: center; gap: 10px;
+      font-weight: 600; letter-spacing: -0.01em;
+    }
+    .brand .icon { font-size: 18px; }
+    .top-nav { display: flex; gap: 28px; }
+    .top-nav a {
+      color: rgba(255,255,255,.85); text-decoration: none;
+      font-size: 13px; letter-spacing: .02em;
+      transition: color .15s ease;
+    }
+    .top-nav a:hover { color: var(--white); }
+
+    /* ── Breadcrumb ──────────────────────────────────────────── */
+    .breadcrumb {
+      background: var(--white);
+      border-bottom: 1px solid var(--gray-200);
+      padding: 14px 0;
+      font-size: 13px;
+    }
+    .breadcrumb .container {
+      display: flex; flex-wrap: wrap; align-items: center; gap: 8px;
+      color: var(--gray-500);
+    }
+    .breadcrumb a {
+      color: var(--blue-500); text-decoration: none;
+      transition: color .15s ease;
+    }
+    .breadcrumb a:hover { color: var(--blue-900); text-decoration: underline; }
+    .breadcrumb .sep { color: var(--gray-400); font-weight: 300; }
+    .breadcrumb .current { color: var(--gray-900); font-weight: 500; }
+
+    /* ── Hero / Titel ────────────────────────────────────────── */
+    .hero {
+      background: var(--white);
+      padding: 48px 0 32px;
+      border-bottom: 1px solid var(--gray-200);
+    }
+    .hero .label {
+      font-size: 12px; font-weight: 700; color: var(--orange-700);
+      letter-spacing: .15em; margin-bottom: 12px;
+    }
+    .hero h1 {
+      font-family: 'Inter', sans-serif;
+      font-weight: 800; font-size: clamp(28px, 4vw, 40px);
+      color: var(--blue-900); line-height: 1.15;
+      letter-spacing: -0.025em;
+      margin-bottom: 16px;
+    }
+    .hero .meta {
+      font-size: 13px; color: var(--gray-500);
+      display: flex; flex-wrap: wrap; gap: 8px; align-items: center;
+    }
+    .hero .meta .dot { width: 3px; height: 3px; background: var(--gray-400); border-radius: 50%; }
+
+    /* ── Hauptbereich ────────────────────────────────────────── */
+    main { padding: 48px 0 64px; }
+
+    /* ── Inhaltsblock (Box mit farbigem Akzent oben) ─────────── */
+    .info-card {
+      background: var(--white);
+      border-radius: 12px;
+      padding: 28px 32px;
+      margin-bottom: 32px;
+      box-shadow: var(--shadow-sm);
+      border: 1px solid var(--gray-200);
+      border-top: 4px solid;
+      position: relative;
+    }
+    .info-card.blue { border-top-color: var(--blue-900); background: linear-gradient(180deg, var(--blue-50) 0%, var(--white) 80px); }
+    .info-card.orange { border-top-color: var(--orange-700); background: linear-gradient(180deg, var(--orange-100) 0%, var(--white) 80px); }
+
+    .info-card .head {
+      display: flex; align-items: center; gap: 12px;
+      margin-bottom: 16px;
+    }
+    .info-card .head .num {
+      font-size: 20px; font-weight: 700;
+    }
+    .info-card.blue .head .num,
+    .info-card.blue .head h2 { color: var(--blue-900); }
+    .info-card.orange .head .num,
+    .info-card.orange .head h2 { color: var(--orange-700); }
+    .info-card .head h2 {
+      font-size: 22px; font-weight: 700;
+      letter-spacing: -0.015em;
+    }
+    .info-card .head .emoji { font-size: 22px; line-height: 1; }
+    .info-card p { margin-bottom: 14px; color: var(--gray-700); }
+    .info-card p:last-child { margin-bottom: 0; }
+    .info-card strong { color: var(--gray-900); font-weight: 600; }
+    .info-card.orange strong.accent { color: var(--orange-700); }
+
+    /* Unterabschnitte innerhalb der Boxen */
+    .sub-note {
+      margin-top: 18px;
+      padding: 16px 18px;
+      background: rgba(255,255,255,.7);
+      border-left: 3px solid var(--orange-500);
+      border-radius: 4px;
+    }
+    .sub-note h3 {
+      font-size: 14px; font-weight: 700; color: var(--orange-700);
+      margin-bottom: 8px; display: flex; align-items: center; gap: 8px;
+    }
+    .sub-note p { font-size: 14.5px; }
+    .sub-note code, .sub-note .mono {
+      font-family: 'JetBrains Mono', 'Consolas', monospace;
+      background: var(--white); padding: 2px 6px; border-radius: 4px;
+      font-size: 13.5px; color: var(--orange-700); font-weight: 600;
+      border: 1px solid var(--gray-200);
+    }
+
+    /* ── Sektions-Überschrift ────────────────────────────────── */
+    .section-head { margin: 56px 0 24px; }
+    .section-head .eyebrow {
+      font-size: 12px; font-weight: 700;
+      color: var(--blue-500); letter-spacing: .15em;
+      margin-bottom: 10px; display: flex; align-items: center; gap: 8px;
+    }
+    .section-head h2 {
+      font-size: 26px; font-weight: 700; color: var(--blue-900);
+      letter-spacing: -0.015em;
+      padding-bottom: 12px;
+      border-bottom: 1px solid var(--gray-200);
+    }
+
+    /* ── Roadmap (5 Schritte horizontal) ─────────────────────── */
+    .roadmap {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 10px;
+      margin-bottom: 48px;
+    }
+    .roadmap-step {
+      background: var(--blue-100);
+      border: 1px solid #C5CAE9;
+      border-radius: 10px;
+      padding: 16px 8px;
+      text-align: center;
+      transition: transform .2s ease, box-shadow .2s ease;
+      cursor: default;
+    }
+    .roadmap-step:hover {
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-md);
+    }
+    .roadmap-step .n {
+      font-size: 28px; font-weight: 800;
+      color: var(--blue-900); line-height: 1;
+      margin-bottom: 6px;
+    }
+    .roadmap-step .lbl {
+      font-size: 12px; font-weight: 600;
+      color: var(--blue-900);
+    }
+
+    /* ── Schritt-Karte ───────────────────────────────────────── */
+    .schritt {
+      background: var(--white);
+      border-radius: 12px;
+      margin-bottom: 28px;
+      border: 1px solid var(--gray-200);
+      box-shadow: var(--shadow-sm);
+      overflow: hidden;
+    }
+    .schritt-head {
+      display: flex; align-items: center; gap: 18px;
+      padding: 18px 22px;
+      background: var(--blue-100);
+      border-bottom: 1px solid #C5CAE9;
+    }
+    .schritt-head .num {
+      flex-shrink: 0;
+      width: 48px; height: 48px;
+      background: var(--blue-900);
+      color: var(--white);
+      border-radius: 10px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 22px; font-weight: 700;
+    }
+    .schritt-head .titles .lbl {
+      font-size: 11px; font-weight: 600;
+      color: var(--blue-500); letter-spacing: .1em;
+      margin-bottom: 2px;
+    }
+    .schritt-head .titles h3 {
+      font-size: 19px; font-weight: 700;
+      color: var(--blue-900); letter-spacing: -0.01em;
+    }
+    .schritt-body { padding: 22px 24px; }
+    .schritt-body > p { margin-bottom: 16px; }
+
+    /* ── Hinweis-Boxen (Info / Tipp / Vorsicht) ──────────────── */
+    .hinweis {
+      padding: 14px 18px;
+      border-radius: 8px;
+      border-left: 4px solid;
+      font-size: 14.5px;
+    }
+    .hinweis .h-head {
+      display: flex; align-items: center; gap: 8px;
+      font-weight: 700; font-size: 14px;
+      margin-bottom: 6px;
+    }
+    .hinweis.info { background: var(--blue-100); border-left-color: var(--blue-900); }
+    .hinweis.info .h-head { color: var(--blue-900); }
+    .hinweis.tipp { background: var(--orange-100); border-left-color: var(--orange-700); }
+    .hinweis.tipp .h-head { color: var(--orange-700); }
+    .hinweis.warn { background: var(--yellow-100); border-left-color: var(--red-700); }
+    .hinweis.warn .h-head { color: var(--red-700); }
+    .hinweis code, .hinweis .mono {
+      font-family: 'JetBrains Mono', monospace;
+      background: rgba(255,255,255,.7);
+      padding: 1px 6px; border-radius: 4px;
+      font-size: 13px; font-weight: 600;
+    }
+    .hinweis.info code { color: var(--blue-900); border: 1px solid #C5CAE9; }
+    .hinweis.tipp code { color: var(--orange-700); border: 1px solid #FFD180; }
+    .hinweis.warn code { color: var(--red-700); border: 1px solid #FFE082; }
+
+    /* ── Formel-Box ──────────────────────────────────────────── */
+    .formel-box {
+      background: var(--green-100);
+      border: 1px solid #A5D6A7;
+      border-radius: 10px;
+      padding: 20px 24px;
+      text-align: center;
+      margin: 22px 0;
+    }
+    .formel-box .formel-head {
+      font-size: 11px; font-weight: 700;
+      color: var(--green-700); letter-spacing: .15em;
+      margin-bottom: 14px;
+    }
+    .formel-box .formel {
+      font-family: 'JetBrains Mono', 'Consolas', monospace;
+      font-size: clamp(18px, 2.5vw, 26px);
+      font-weight: 700;
+      color: var(--blue-900);
+      letter-spacing: -0.01em;
+    }
+    .formel-box .formel .x { color: var(--orange-700); margin: 0 8px; }
+
+    /* ── Beispiel-Tabelle ────────────────────────────────────── */
+    .table-wrap {
+      background: var(--white);
+      border-radius: 12px;
+      border: 1px solid var(--gray-200);
+      overflow: hidden;
+      box-shadow: var(--shadow-sm);
+      margin-bottom: 16px;
+    }
+    table.beispiel {
+      width: 100%; border-collapse: collapse;
+      font-size: 14.5px;
+    }
+    .beispiel thead th {
+      background: var(--blue-900);
+      color: var(--white);
+      font-weight: 600;
+      padding: 12px 10px;
+      text-align: center;
+      font-size: 13px;
+      letter-spacing: .01em;
+    }
+    .beispiel thead th:first-child { text-align: left; padding-left: 18px; }
+    .beispiel tbody td {
+      padding: 12px 10px;
+      text-align: center;
+      border-bottom: 1px solid var(--gray-200);
+    }
+    .beispiel tbody td:first-child {
+      text-align: left;
+      font-weight: 600;
+      color: var(--gray-900);
+      padding-left: 18px;
+    }
+    .beispiel .calc { font-family: 'JetBrains Mono', monospace; color: var(--gray-700); font-size: 13.5px; }
+    .beispiel .tn { font-weight: 700; color: var(--blue-900); background: var(--blue-100); font-size: 15px; }
+    .beispiel tfoot td {
+      background: var(--green-100);
+      padding: 14px 12px;
+      font-weight: 700;
+      color: var(--green-700);
+      border: none;
+    }
+    .beispiel tfoot td.label { text-align: right; padding-right: 18px; font-size: 14px; }
+    .beispiel tfoot td.gesamt {
+      font-size: 22px; color: var(--green-700);
+      text-align: center;
+    }
+    .table-note { font-size: 14px; color: var(--gray-500); font-style: italic; margin-bottom: 32px; }
+
+    /* ── Verwandte Artikel ───────────────────────────────────── */
+    .related {
+      background: var(--gray-100);
+      border: 1px solid var(--gray-200);
+      border-radius: 12px;
+      padding: 22px 26px;
+      margin-top: 40px;
+    }
+    .related h3 {
+      font-size: 12px; font-weight: 700;
+      color: var(--blue-900); letter-spacing: .12em;
+      margin-bottom: 14px;
+      display: flex; align-items: center; gap: 8px;
+    }
+    .related ul { list-style: none; }
+    .related li {
+      padding: 6px 0;
+      font-size: 14.5px;
+      color: var(--gray-700);
+    }
+    .related li strong {
+      color: var(--blue-500);
+      font-weight: 600;
+      margin-right: 4px;
+    }
+    .related li .ico { display: inline-block; width: 22px; }
+    .related li a {
+      color: inherit;
+      text-decoration: none;
+      transition: color .15s ease;
+    }
+    .related li a:hover strong { color: var(--blue-900); text-decoration: underline; }
+
+    /* ── Footer ──────────────────────────────────────────────── */
+    footer {
+      background: var(--white);
+      border-top: 1px solid var(--gray-200);
+      padding: 32px 0 40px;
+      margin-top: 48px;
+      font-size: 13px;
+      color: var(--gray-500);
+    }
+    footer p { margin-bottom: 4px; }
+    footer .muted { color: var(--gray-400); font-size: 12px; }
+
+    /* ── Reading Progress Bar (Top, dezent) ──────────────────── */
+    .progress {
+      position: fixed; top: 0; left: 0; height: 3px;
+      background: var(--orange-500);
+      width: 0; z-index: 200;
+      transition: width .1s ease-out;
+    }
+
+    /* ── Mobile ──────────────────────────────────────────────── */
+    @media (max-width: 700px) {
+      .intranet-bar .container { padding: 10px 16px; }
+      .top-nav { display: none; }
+      .container { padding: 0 16px; }
+      .hero { padding: 32px 0 24px; }
+      .info-card { padding: 22px 20px; border-radius: 10px; }
+      .info-card .head h2 { font-size: 19px; }
+      .roadmap { grid-template-columns: repeat(5, 1fr); gap: 6px; }
+      .roadmap-step { padding: 12px 4px; }
+      .roadmap-step .n { font-size: 22px; }
+      .roadmap-step .lbl { font-size: 10px; }
+      .schritt-head { padding: 14px 18px; gap: 14px; }
+      .schritt-head .num { width: 40px; height: 40px; font-size: 18px; }
+      .schritt-head .titles h3 { font-size: 17px; }
+      .schritt-body { padding: 18px 20px; }
+      .table-wrap { overflow-x: auto; }
+      table.beispiel { min-width: 600px; }
+      .related { padding: 18px 20px; }
+    }
+
+    /* ── Print ───────────────────────────────────────────────── */
+    @media print {
+      .intranet-bar, .progress, footer { display: none; }
+      body { background: white; }
+      .info-card, .schritt, .related { box-shadow: none; break-inside: avoid; }
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="progress" id="progress"></div>
+
+  <!-- Intranet-Header -->
+  <header class="intranet-bar">
+    <div class="container">
+      <div class="brand">
+        <span class="icon">🌐</span>
+        <span>Optimal GmbH&nbsp;·&nbsp;Intranet</span>
+      </div>
+      <nav class="top-nav">
+        <a href="#">Startseite</a>
+        <a href="#">Wissensdatenbank</a>
+        <a href="#">Tools</a>
+        <a href="#">Kontakt</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Breadcrumb -->
+  <nav class="breadcrumb">
+    <div class="container">
+      <a href="#">Intranet</a>
+      <span class="sep">›</span>
+      <a href="#">Wissensdatenbank</a>
+      <span class="sep">›</span>
+      <a href="#">Einkauf &amp; Beschaffung</a>
+      <span class="sep">›</span>
+      <span class="current">Angebotsvergleich</span>
+    </div>
+  </nav>
+
+  <!-- Hero -->
+  <section class="hero">
+    <div class="container">
+      <p class="label">LEITFADEN</p>
+      <h1>Der Angebotsvergleich mit der Nutzwertanalyse&nbsp;(NWA)</h1>
+      <p class="meta">
+        <span>Wissensartikel</span>
+        <span class="dot"></span>
+        <span>Lesedauer ca. 5 Minuten</span>
+        <span class="dot"></span>
+        <span>zuletzt aktualisiert: Januar&nbsp;2026</span>
+      </p>
+    </div>
+  </section>
+
+  <main>
+    <div class="container">
+
+      <!-- 1. Was ist NWA? -->
+      <article class="info-card blue">
+        <div class="head">
+          <span class="emoji">ℹ️</span>
+          <span class="num">1.</span>
+          <h2>Was ist eine Nutzwertanalyse?</h2>
+        </div>
+        <p>Beim reinen <em>quantitativen</em> Angebotsvergleich gewinnt immer das billigste Angebot. Im kaufmännischen Alltag reicht es aber oft nicht aus, nur auf den bloßen Preis zu schauen.</p>
+        <p>Mit der <strong>Nutzwertanalyse (NWA)</strong> suchen wir stattdessen das <strong>wirtschaftlichste</strong> Angebot. Zum wirtschaftlichen Handeln zählt nämlich nicht nur der Bezugspreis. Es müssen auch nachfolgende interne Kosten, mögliche Risiken (z.&nbsp;B. durch lange Lieferzeiten) und vor allem die zentralen Werte des eigenen Unternehmens berücksichtigt werden. Welche Werte das sind, lässt sich meist direkt aus dem <strong>Unternehmensleitbild</strong> ablesen. So kann beispielsweise durch die Beachtung von Nachhaltigkeit oder fairen Arbeitsbedingungen das eigene Firmenimage gestärkt werden.</p>
+        <p>Die Nutzwertanalyse ist ein Hilfsmittel, um solche Angebote gerecht und systematisch zu vergleichen. Sie macht Eigenschaften, die man eigentlich schwer messen kann, durch Punkte vergleichbar. Am Ende gewinnt das Angebot, das insgesamt den höchsten Nutzen für das Unternehmen bringt.</p>
+      </article>
+
+      <!-- 2. Gewichtung -->
+      <article class="info-card orange">
+        <div class="head">
+          <span class="emoji">⚖️</span>
+          <span class="num">2.</span>
+          <h2>Was bedeutet „Gewichtung"?</h2>
+        </div>
+        <p>Nicht jedes Kriterium ist für uns gleich wichtig. Vielleicht ist eine schnelle Lieferzeit besonders wichtig, ein 24-Stunden-Support aber weniger. Deshalb werden die Kriterien <strong>gewichtet</strong>. Die Gewichtung gibt an, wie viel Prozent&nbsp;(%) ein Kriterium am Gesamtergebnis ausmacht.</p>
+
+        <div class="sub-note">
+          <h3>🧭 Wichtiger Grundsatz: keine Willkür!</h3>
+          <p>Die Gewichtungen und die vergebenen Punkte können zwar frei festgelegt werden, sie dürfen aber keine Willkür sein. Die Verteilung muss immer gut und nachvollziehbar begründet werden. <strong class="accent">Der beste Kompass dafür ist das Leitbild des Unternehmens:</strong> Kriterien, die dort als besonders wichtig beschrieben werden, müssen auch entsprechend gewichtet werden.</p>
+        </div>
+
+        <div class="sub-note">
+          <h3>∑ Mathematische Regel</h3>
+          <p>Alle Gewichtungen zusammen müssen am Ende immer exakt <span class="mono">100&nbsp;%</span> (oder als Dezimalzahl <span class="mono">1,00</span>) ergeben.</p>
+        </div>
+      </article>
+
+      <!-- 3. Vorgehen -->
+      <header class="section-head">
+        <p class="eyebrow">🔢 VORGEHEN</p>
+        <h2>3. Wie funktioniert die Nutzwertanalyse? (Die 5 Schritte)</h2>
+      </header>
+
+      <!-- Roadmap -->
+      <div class="roadmap">
+        <div class="roadmap-step"><div class="n">1</div><div class="lbl">K.O.-Filter</div></div>
+        <div class="roadmap-step"><div class="n">2</div><div class="lbl">Gewichten</div></div>
+        <div class="roadmap-step"><div class="n">3</div><div class="lbl">Bewerten</div></div>
+        <div class="roadmap-step"><div class="n">4</div><div class="lbl">Teilnutzwerte</div></div>
+        <div class="roadmap-step"><div class="n">5</div><div class="lbl">Gesamtnutzwert</div></div>
+      </div>
+
+      <!-- Schritt 1 -->
+      <article class="schritt">
+        <header class="schritt-head">
+          <div class="num">1</div>
+          <div class="titles">
+            <p class="lbl">SCHRITT 1</p>
+            <h3>Der Vorab-Filter (K.O.-Kriterien anwenden)</h3>
+          </div>
+        </header>
+        <div class="schritt-body">
+          <p>Bevor wir rechnen, prüfen wir die Angebote auf ihre grundlegende Eignung. Verstößt ein Angebot auch nur gegen ein einziges K.O.-Kriterium, wird es sofort aussortiert und nimmt an der weiteren Analyse nicht mehr teil.</p>
+          <div class="hinweis info">
+            <div class="h-head">ⓘ Definition: K.O.-Kriterium</div>
+            <p>Ein K.O.-Kriterium ist eine zwingende Muss-Bedingung (z.&nbsp;B. eine maximale Lieferzeit oder eine Mindestbonität des Lieferanten). Wird sie nicht eingehalten, scheidet das Angebot ohne Punktevergabe aus dem weiteren Vergleich aus.</p>
+          </div>
+        </div>
+      </article>
+
+      <!-- Schritt 2 -->
+      <article class="schritt">
+        <header class="schritt-head">
+          <div class="num">2</div>
+          <div class="titles">
+            <p class="lbl">SCHRITT 2</p>
+            <h3>Bewertungskriterien definieren und gewichten</h3>
+          </div>
+        </header>
+        <div class="schritt-body">
+          <p>Für die verbleibenden Angebote legen wir fest, welche Eigenschaften uns wichtig sind. Da nicht jedes Kriterium für die Optimal&nbsp;GmbH gleich bedeutsam ist, müssen wir diese gewichten. Dazu verteilen wir Prozentwerte, die in der Summe genau 100&nbsp;% ergeben müssen.</p>
+          <div class="hinweis tipp">
+            <div class="h-head">💡 Tipp für Excel: Prozent in Dezimalzahlen</div>
+            <p>Für die spätere Berechnung wandeln wir die Prozentsätze in Dezimalzahlen um:
+              <code>30&nbsp;%&nbsp;=&nbsp;0,3</code> ·
+              <code>40&nbsp;%&nbsp;=&nbsp;0,4</code> ·
+              <code>100&nbsp;%&nbsp;=&nbsp;1,0</code>
+            </p>
+          </div>
+        </div>
+      </article>
+
+      <!-- Schritt 3 -->
+      <article class="schritt">
+        <header class="schritt-head">
+          <div class="num">3</div>
+          <div class="titles">
+            <p class="lbl">SCHRITT 3</p>
+            <h3>Angebote bewerten (Punkte vergeben)</h3>
+          </div>
+        </header>
+        <div class="schritt-body">
+          <p>Nun betrachten wir jedes Angebot und vergeben für jedes Kriterium Punkte. Wir nutzen in der Regel eine Skala von 1 bis 5 Punkten (1 = ungenügend, 5 = hervorragend).</p>
+          <div class="hinweis warn">
+            <div class="h-head">⚠️ Vorsicht beim Kriterium „Preis"</div>
+            <p>Die Skala wird beim Preis umgekehrt: Das teuerste Angebot bekommt die wenigsten Punkte, das billigste Angebot die meisten. Nur so spiegelt die Punktzahl auch den Nutzen für unser Unternehmen wider.</p>
+          </div>
+        </div>
+      </article>
+
+      <!-- Schritt 4 -->
+      <article class="schritt">
+        <header class="schritt-head">
+          <div class="num">4</div>
+          <div class="titles">
+            <p class="lbl">SCHRITT 4</p>
+            <h3>Teilnutzwerte berechnen</h3>
+          </div>
+        </header>
+        <div class="schritt-body">
+          <p>Um die Wichtigkeit (Gewichtung) mit der Bewertung (Punkte) zu verknüpfen, berechnen wir nun für jedes Kriterium den sogenannten Teilnutzwert.</p>
+
+          <div class="formel-box">
+            <div class="formel-head">📐 FORMEL ZUR BERECHNUNG</div>
+            <div class="formel">
+              Teilnutzwert&nbsp;=&nbsp;Punktwert<span class="x">×</span>Gewichtungsfaktor
+            </div>
+          </div>
+
+          <div class="hinweis info">
+            <div class="h-head">ⓘ Rechenbeispiel: Kriterium Garantie</div>
+            <p>Die Gewichtung beträgt 40&nbsp;% (Faktor <code>0,4</code>). Das Angebot beinhaltet 3 Jahre Garantie und erhält dafür <strong>4 Punkte</strong>. Rechnung: <code>4&nbsp;×&nbsp;0,4&nbsp;=&nbsp;1,6</code> → Der Teilnutzwert für die Garantie beträgt <strong>1,6</strong>.</p>
+          </div>
+        </div>
+      </article>
+
+      <!-- Schritt 5 -->
+      <article class="schritt">
+        <header class="schritt-head">
+          <div class="num">5</div>
+          <div class="titles">
+            <p class="lbl">SCHRITT 5</p>
+            <h3>Gesamtnutzwert ermitteln &amp; Entscheidung treffen</h3>
+          </div>
+        </header>
+        <div class="schritt-body">
+          <p>Zuletzt werden alle berechneten Teilnutzwerte eines Angebots addiert. Diese Summe ist der <strong>Gesamtnutzwert</strong>. Das Angebot mit dem höchsten Gesamtnutzwert stellt den besten Kompromiss aus Preis und Leistung dar. Dies ist die Basis für unsere begründete Empfehlung für einen Lieferanten.</p>
+        </div>
+      </article>
+
+      <!-- Veranschaulichung -->
+      <header class="section-head">
+        <p class="eyebrow">📊 VERANSCHAULICHUNG</p>
+        <h2>Beispiel-Rechnung für Angebot&nbsp;1</h2>
+      </header>
+
+      <div class="table-wrap">
+        <table class="beispiel">
+          <thead>
+            <tr>
+              <th>Bewertungskriterium</th>
+              <th>Gewichtung (%)</th>
+              <th>Faktor</th>
+              <th>Punkte (1–5)</th>
+              <th>Berechnung</th>
+              <th>Teilnutzwert</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Preis</td>
+              <td>30&nbsp;%</td>
+              <td>0,3</td>
+              <td>3</td>
+              <td class="calc">3&nbsp;×&nbsp;0,3</td>
+              <td class="tn">0,9</td>
+            </tr>
+            <tr>
+              <td>Qualität</td>
+              <td>40&nbsp;%</td>
+              <td>0,4</td>
+              <td>5</td>
+              <td class="calc">5&nbsp;×&nbsp;0,4</td>
+              <td class="tn">2,0</td>
+            </tr>
+            <tr>
+              <td>Nachhaltigkeit</td>
+              <td>30&nbsp;%</td>
+              <td>0,3</td>
+              <td>2</td>
+              <td class="calc">2&nbsp;×&nbsp;0,3</td>
+              <td class="tn">0,6</td>
+            </tr>
+          </tbody>
+          <tfoot>
+            <tr>
+              <td class="label" colspan="5">Gesamtnutzwert (Summe aller Teilnutzwerte) des Angebots →</td>
+              <td class="gesamt">3,5</td>
+            </tr>
+          </tfoot>
+        </table>
+      </div>
+      <p class="table-note">Der Gesamtnutzwert muss nun mit den Gesamtnutzwerten der übrigen Angebote verglichen werden.</p>
+
+      <!-- Verwandte Artikel -->
+      <aside class="related">
+        <h3>🔗 VERWANDTE ARTIKEL IN DER WISSENSDATENBANK</h3>
+        <ul>
+          <li><span class="ico">📄</span><a href="leitbild.html"><strong>Leitbild der Optimal GmbH</strong> – Unsere Werte als Kompass für Gewichtung und Lieferantenauswahl</a></li>
+          <li><span class="ico">📊</span><a href="hilfekarten.html"><strong>Excel-Hilfekarten zur NWA</strong> – Schritt-für-Schritt-Anleitung für die Tabellenkalkulation</a></li>
+        </ul>
+      </aside>
+
+    </div>
+  </main>
+
+  <footer>
+    <div class="container">
+      <p><strong>Optimal GmbH</strong> · Hofheimer Straße 14–18 · 97437 Haßfurt</p>
+      <p class="muted">Wissensdatenbank · Einkauf &amp; Beschaffung · Letzte Aktualisierung: Januar&nbsp;2026</p>
+    </div>
+  </footer>
+
+  <script>
+    // Reading-Progress-Bar
+    (function() {
+      var bar = document.getElementById('progress');
+      function update() {
+        var h = document.documentElement;
+        var max = h.scrollHeight - h.clientHeight;
+        var pct = max > 0 ? (h.scrollTop / max) * 100 : 0;
+        bar.style.width = pct + '%';
+      }
+      window.addEventListener('scroll', update, { passive: true });
+      update();
+    })();
+  </script>
+
+</body>
+</html>
